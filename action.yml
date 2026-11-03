@@ -1,0 +1,42 @@
+name: 'LovieMe Ephemeral PR Preview Subdomains'
+description: 'Automatically claim and provision custom *.lovie.me subdomains for Pull Request previews, and tear them down on close.'
+author: 'Sagar Kewat (Sagarithm)'
+
+inputs:
+  api-key:
+    description: 'LovieMe API Key (lovie_live_...)'
+    required: true
+  subdomain:
+    description: 'Subdomain prefix to provision or release (e.g. pr-12-myapp)'
+    required: true
+  action:
+    description: 'Action to perform: "claim", "release", or "auto" (detects from PR event)'
+    required: false
+    default: 'auto'
+  cname-target:
+    description: 'Target CNAME host to point the preview subdomain to (e.g. cname.vercel-dns.com or deployment URL)'
+    required: false
+  preset:
+    description: '1-click cloud preset to apply (vercel, railway, render, github-pages, etc.)'
+    required: false
+  api-url:
+    description: 'LovieMe API base URL'
+    required: false
+    default: 'https://www.lovie.me'
+
+outputs:
+  fqdn:
+    description: 'Full Fully Qualified Domain Name (e.g. pr-12-myapp.lovie.me)'
+  status:
+    description: 'Status of the operation (claimed, released, skipped)'
+  preview-url:
+    description: 'The live HTTPS URL of the preview deployment'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'globe'
+  color: 'black'
+

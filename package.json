@@ -1,0 +1,25 @@
+{
+  "name": "lovieme-action",
+  "version": "1.0.0",
+  "description": "GitHub Action for ephemeral Pull Request preview subdomains on LovieMe",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node -e \"const fs = require('fs'); fs.copyFileSync('src/index.js', 'dist/index.js'); console.log('Action built successfully');\"",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "github-action",
+    "lovieme",
+    "subdomain",
+    "pr-preview",
+    "dns",
+    "anycast"
+  ],
+  "author": "Sagar Kewat (Sagarithm)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sagarithm/lovieme-action.git"
+  },
+  "license": "MIT"
+}
