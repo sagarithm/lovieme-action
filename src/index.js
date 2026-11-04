@@ -65,8 +65,6 @@ export async function run() {
   // Determine action (auto-detect based on PR event if available)
   let mode = actionInput;
   if (mode === "auto") {
-    const eventName = process.env.GITHUB_EVENT_NAME || "";
-    // If PR event payload has action
     let prAction = "";
     if (process.env.GITHUB_EVENT_PATH && fs.existsSync(process.env.GITHUB_EVENT_PATH)) {
       try {
@@ -157,15 +155,10 @@ export async function run() {
   }
 }
 
-// Auto-run if executed directly as GitHub Action
 // Auto-run only if executed directly as GitHub Action entrypoint (not when imported in unit tests)
 if (process.env.GITHUB_ACTIONS && !process.env.VITEST) {
   run().catch((err) => {
-    console.error(::error::\);
-    process.exit(1);
-  });
-}`);
+    console.error(`::error::${err.message}`);
     process.exit(1);
   });
 }
-
